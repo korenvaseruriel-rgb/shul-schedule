@@ -781,8 +781,8 @@ function getOmerDay() {
   var tk = todayKey();
   // OMER_START_KEY = 20260404 = day 1, last day = 20260523 = day 49
   if (tk < OMER_START_KEY) { return 0; }
-  // Calculate days difference
-  var startY=2026, startM=4, startD=4;
+  // Calculate days difference — day 1 = April 3 2026 (16 Nisan 5786)
+  var startY=2026, startM=4, startD=3;
   var now=new Date();
   var start=new Date(startY,startM-1,startD);
   var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
