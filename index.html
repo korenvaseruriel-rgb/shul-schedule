@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N1E11D3G4N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N1E11D3G4N');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>בית הכנסת זכרון משה — זמני תפילה</title>
@@ -95,17 +103,6 @@ body{background:#f5f0e8;color:#2a1f0e;font-family:'Heebo',sans-serif;direction:r
 .share-url{width:100%;padding:.5rem .8rem;border-radius:8px;border:1px solid #c9a96e;font-family:monospace;font-size:.78rem;color:#2a1f0e;background:#f5f0e8;direction:ltr;}
 .btn-copy{margin-top:.5rem;background:#3d2200;color:#f5d98a;border:none;padding:.5rem 1.1rem;border-radius:8px;font-family:'Heebo',sans-serif;font-size:.82rem;cursor:pointer;font-weight:600;}
 .btn-copy.copied{background:#4a7c3f;}
-
-.zrow{display:flex;justify-content:space-between;align-items:center;padding:.55rem .9rem;border-bottom:.5px solid #f0e8d8;font-size:.87rem;}
-.zrow:last-child{border-bottom:none;}
-.zlab{color:#2a1f0e;}
-.ztim{font-weight:600;color:#5c3500;font-family:monospace;font-size:.95rem;}
-.omer-box{background:linear-gradient(135deg,#3d2200,#5c3500);color:#f5d98a;border-radius:12px;padding:1rem 1.2rem;text-align:center;margin-bottom:1rem;}
-.omer-num{font-family:'Frank Ruhl Libre',serif;font-size:2rem;font-weight:700;}
-.omer-label{font-size:.8rem;opacity:.8;margin-top:.2rem;}
-.omer-weeks{font-size:.85rem;margin-top:.3rem;opacity:.9;}
-.zmanim-note{font-size:.72rem;color:#8b7355;text-align:center;margin-top:.5rem;}
-
 footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top:1px solid #e8dcc8;}
 </style>
 </head>
@@ -134,7 +131,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
     <button class="tab-btn" onclick="sw('ann')">הודעות</button>
     <button class="tab-btn" onclick="sw('donate')">תרומות</button>
-    <button class="tab-btn" onclick="sw('zmanim')">זמני היום</button>
     <button class="tab-btn" onclick="sw('share')">שיתוף</button>
   </div>
 
@@ -231,23 +227,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <a href="https://www.jgive.com/new/he/ils/charity-organizations/8225" target="_blank" class="donate-btn">לתרומה לחץ כאן</a>
       <p class="donate-note">התרומה מתבצעת באתר jgive המאובטח</p>
     </div>
-  </div>
-
-
-  <div class="tab-content" id="tab-zmanim">
-    <div id="omerBox"></div>
-    <div class="sec-title">זמני היום — בית שמש</div>
-    <div class="fb" id="zmanimBox">
-      <div class="zrow"><span class="zlab">נץ החמה</span><span class="ztim" id="z_netz">—</span></div>
-      <div class="zrow"><span class="zlab">סוף ק"ש — מגן אברהם</span><span class="ztim" id="z_sksh_mga">—</span></div>
-      <div class="zrow"><span class="zlab">סוף ק"ש — גר"א</span><span class="ztim" id="z_sksh_gra">—</span></div>
-      <div class="zrow"><span class="zlab">סוף זמן תפילה — מגן אברהם</span><span class="ztim" id="z_szt_mga">—</span></div>
-      <div class="zrow"><span class="zlab">סוף זמן תפילה — גר"א</span><span class="ztim" id="z_szt_gra">—</span></div>
-      <div class="zrow"><span class="zlab">חצות היום</span><span class="ztim" id="z_chatzot">—</span></div>
-      <div class="zrow"><span class="zlab">שקיעת החמה</span><span class="ztim" id="z_shkia">—</span></div>
-      <div class="zrow"><span class="zlab">צאת הכוכבים (18 דק' אחרי שקיעה)</span><span class="ztim" id="z_tzeit">—</span></div>
-    </div>
-    <p class="zmanim-note">זמנים מחושבים לבית שמש לפי לוח עיתי לבינה</p>
   </div>
 
   <div class="tab-content" id="tab-share">
@@ -577,257 +556,8 @@ function copyUrl(){
   setTimeout(function(){btn.textContent='העתק קישור';btn.classList.remove('copied');},2500);
 }
 
-
-var ZMANIM = {
-  20260423:{netz:"6:03",sksh_mga:"8:33",sksh_gra:"9:21",szt_mga:"9:55",szt_gra:"10:27",chatzot:"12:38",shkia:"19:14",tzeit:"19:32"},
-  20260424:{netz:"6:02",sksh_mga:"8:32",sksh_gra:"9:20",szt_mga:"9:54",szt_gra:"10:26",chatzot:"12:38",shkia:"19:15",tzeit:"19:33"},
-  20260425:{netz:"6:01",sksh_mga:"8:31",sksh_gra:"9:19",szt_mga:"9:54",szt_gra:"10:26",chatzot:"12:38",shkia:"19:15",tzeit:"19:33"},
-  20260426:{netz:"6:00",sksh_mga:"8:31",sksh_gra:"9:19",szt_mga:"9:53",szt_gra:"10:25",chatzot:"12:38",shkia:"19:16",tzeit:"19:34"},
-  20260427:{netz:"5:59",sksh_mga:"8:30",sksh_gra:"9:18",szt_mga:"9:53",szt_gra:"10:25",chatzot:"12:38",shkia:"19:17",tzeit:"19:35"},
-  20260428:{netz:"5:58",sksh_mga:"8:30",sksh_gra:"9:18",szt_mga:"9:52",szt_gra:"10:24",chatzot:"12:38",shkia:"19:17",tzeit:"19:35"},
-  20260429:{netz:"5:57",sksh_mga:"8:29",sksh_gra:"9:17",szt_mga:"9:52",szt_gra:"10:24",chatzot:"12:37",shkia:"19:18",tzeit:"19:36"},
-  20260430:{netz:"5:56",sksh_mga:"8:29",sksh_gra:"9:17",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:37",shkia:"19:19",tzeit:"19:37"},
-  20260501:{netz:"5:55",sksh_mga:"8:28",sksh_gra:"9:16",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:37",shkia:"19:19",tzeit:"19:37"},
-  20260502:{netz:"5:54",sksh_mga:"8:27",sksh_gra:"9:15",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:37",shkia:"19:20",tzeit:"19:38"},
-  20260503:{netz:"5:53",sksh_mga:"8:27",sksh_gra:"9:15",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:37",shkia:"19:21",tzeit:"19:39"},
-  20260504:{netz:"5:52",sksh_mga:"8:26",sksh_gra:"9:14",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:37",shkia:"19:22",tzeit:"19:40"},
-  20260505:{netz:"5:51",sksh_mga:"8:26",sksh_gra:"9:14",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:37",shkia:"19:22",tzeit:"19:40"},
-  20260506:{netz:"5:50",sksh_mga:"8:25",sksh_gra:"9:13",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:37",shkia:"19:23",tzeit:"19:41"},
-  20260507:{netz:"5:49",sksh_mga:"8:25",sksh_gra:"9:13",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:37",shkia:"19:24",tzeit:"19:42"},
-  20260508:{netz:"5:49",sksh_mga:"8:25",sksh_gra:"9:13",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:36",shkia:"19:24",tzeit:"19:42"},
-  20260509:{netz:"5:48",sksh_mga:"8:24",sksh_gra:"9:12",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:36",shkia:"19:25",tzeit:"19:43"},
-  20260510:{netz:"5:47",sksh_mga:"8:24",sksh_gra:"9:12",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:36",shkia:"19:26",tzeit:"19:44"},
-  20260511:{netz:"5:46",sksh_mga:"8:23",sksh_gra:"9:11",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:36",shkia:"19:26",tzeit:"19:44"},
-  20260512:{netz:"5:46",sksh_mga:"8:23",sksh_gra:"9:11",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:36",shkia:"19:27",tzeit:"19:45"},
-  20260513:{netz:"5:45",sksh_mga:"8:23",sksh_gra:"9:11",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:36",shkia:"19:28",tzeit:"19:46"},
-  20260514:{netz:"5:44",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:36",shkia:"19:29",tzeit:"19:47"},
-  20260515:{netz:"5:43",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:36",shkia:"19:29",tzeit:"19:47"},
-  20260516:{netz:"5:43",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:36",shkia:"19:30",tzeit:"19:48"},
-  20260517:{netz:"5:42",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:36",shkia:"19:31",tzeit:"19:49"},
-  20260518:{netz:"5:42",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:36",shkia:"19:31",tzeit:"19:49"},
-  20260519:{netz:"5:41",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:36",shkia:"19:32",tzeit:"19:50"},
-  20260520:{netz:"5:40",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:36",shkia:"19:33",tzeit:"19:51"},
-  20260521:{netz:"5:40",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:37",shkia:"19:33",tzeit:"19:51"},
-  20260522:{netz:"5:39",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:37",shkia:"19:34",tzeit:"19:52"},
-  20260523:{netz:"5:39",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:35",tzeit:"19:53"},
-  20260524:{netz:"5:38",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:35",tzeit:"19:53"},
-  20260525:{netz:"5:38",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:36",tzeit:"19:54"},
-  20260526:{netz:"5:37",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:36",tzeit:"19:54"},
-  20260527:{netz:"5:37",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:37",tzeit:"19:55"},
-  20260528:{netz:"5:37",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:38",tzeit:"19:56"},
-  20260529:{netz:"5:36",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:38",tzeit:"19:56"},
-  20260530:{netz:"5:36",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:37",shkia:"19:39",tzeit:"19:57"},
-  20260531:{netz:"5:36",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:38",shkia:"19:39",tzeit:"19:57"},
-  20260601:{netz:"5:35",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:38",shkia:"19:40",tzeit:"19:58"},
-  20260602:{netz:"5:35",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:38",shkia:"19:41",tzeit:"19:59"},
-  20260603:{netz:"5:35",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:38",shkia:"19:41",tzeit:"19:59"},
-  20260604:{netz:"5:35",sksh_mga:"8:18",sksh_gra:"9:06",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:38",shkia:"19:42",tzeit:"20:00"},
-  20260605:{netz:"5:35",sksh_mga:"8:18",sksh_gra:"9:06",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:38",shkia:"19:42",tzeit:"20:00"},
-  20260606:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:39",shkia:"19:43",tzeit:"20:01"},
-  20260607:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:39",shkia:"19:43",tzeit:"20:01"},
-  20260608:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:39",shkia:"19:44",tzeit:"20:02"},
-  20260609:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:45",szt_gra:"10:17",chatzot:"12:39",shkia:"19:44",tzeit:"20:02"},
-  20260610:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:39",shkia:"19:45",tzeit:"20:03"},
-  20260611:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:40",shkia:"19:45",tzeit:"20:03"},
-  20260612:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:40",shkia:"19:45",tzeit:"20:03"},
-  20260613:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:40",shkia:"19:46",tzeit:"20:04"},
-  20260614:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:40",shkia:"19:46",tzeit:"20:04"},
-  20260615:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:40",shkia:"19:47",tzeit:"20:05"},
-  20260616:{netz:"5:34",sksh_mga:"8:19",sksh_gra:"9:07",szt_mga:"9:46",szt_gra:"10:18",chatzot:"12:41",shkia:"19:47",tzeit:"20:05"},
-  20260617:{netz:"5:34",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:41",shkia:"19:47",tzeit:"20:05"},
-  20260618:{netz:"5:34",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:41",shkia:"19:48",tzeit:"20:06"},
-  20260619:{netz:"5:35",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:41",shkia:"19:48",tzeit:"20:06"},
-  20260620:{netz:"5:35",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:41",shkia:"19:48",tzeit:"20:06"},
-  20260621:{netz:"5:35",sksh_mga:"8:20",sksh_gra:"9:08",szt_mga:"9:47",szt_gra:"10:19",chatzot:"12:42",shkia:"19:48",tzeit:"20:06"},
-  20260622:{netz:"5:35",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:42",shkia:"19:49",tzeit:"20:07"},
-  20260623:{netz:"5:35",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:42",shkia:"19:49",tzeit:"20:07"},
-  20260624:{netz:"5:36",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:42",shkia:"19:49",tzeit:"20:07"},
-  20260625:{netz:"5:36",sksh_mga:"8:21",sksh_gra:"9:09",szt_mga:"9:48",szt_gra:"10:20",chatzot:"12:43",shkia:"19:49",tzeit:"20:07"},
-  20260626:{netz:"5:36",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:43",shkia:"19:49",tzeit:"20:07"},
-  20260627:{netz:"5:37",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:43",shkia:"19:49",tzeit:"20:07"},
-  20260628:{netz:"5:37",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:43",shkia:"19:49",tzeit:"20:07"},
-  20260629:{netz:"5:37",sksh_mga:"8:22",sksh_gra:"9:10",szt_mga:"9:49",szt_gra:"10:21",chatzot:"12:43",shkia:"19:49",tzeit:"20:07"},
-  20260630:{netz:"5:38",sksh_mga:"8:23",sksh_gra:"9:11",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:44",shkia:"19:49",tzeit:"20:07"},
-  20260701:{netz:"5:38",sksh_mga:"8:23",sksh_gra:"9:11",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:44",shkia:"19:49",tzeit:"20:07"},
-  20260702:{netz:"5:39",sksh_mga:"8:23",sksh_gra:"9:11",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:44",shkia:"19:49",tzeit:"20:07"},
-  20260703:{netz:"5:39",sksh_mga:"8:24",sksh_gra:"9:12",szt_mga:"9:50",szt_gra:"10:22",chatzot:"12:44",shkia:"19:49",tzeit:"20:07"},
-  20260704:{netz:"5:39",sksh_mga:"8:24",sksh_gra:"9:12",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:44",shkia:"19:49",tzeit:"20:07"},
-  20260705:{netz:"5:40",sksh_mga:"8:24",sksh_gra:"9:12",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:44",shkia:"19:49",tzeit:"20:07"},
-  20260706:{netz:"5:40",sksh_mga:"8:24",sksh_gra:"9:12",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:45",shkia:"19:49",tzeit:"20:07"},
-  20260707:{netz:"5:41",sksh_mga:"8:25",sksh_gra:"9:13",szt_mga:"9:51",szt_gra:"10:23",chatzot:"12:45",shkia:"19:49",tzeit:"20:07"},
-  20260708:{netz:"5:41",sksh_mga:"8:25",sksh_gra:"9:13",szt_mga:"9:52",szt_gra:"10:24",chatzot:"12:45",shkia:"19:49",tzeit:"20:07"},
-  20260709:{netz:"5:42",sksh_mga:"8:25",sksh_gra:"9:13",szt_mga:"9:52",szt_gra:"10:24",chatzot:"12:45",shkia:"19:49",tzeit:"20:07"},
-  20260710:{netz:"5:42",sksh_mga:"8:26",sksh_gra:"9:14",szt_mga:"9:52",szt_gra:"10:24",chatzot:"12:45",shkia:"19:48",tzeit:"20:06"},
-  20260711:{netz:"5:43",sksh_mga:"8:26",sksh_gra:"9:14",szt_mga:"9:53",szt_gra:"10:25",chatzot:"12:45",shkia:"19:48",tzeit:"20:06"},
-  20260712:{netz:"5:43",sksh_mga:"8:26",sksh_gra:"9:14",szt_mga:"9:53",szt_gra:"10:25",chatzot:"12:46",shkia:"19:48",tzeit:"20:06"},
-  20260713:{netz:"5:44",sksh_mga:"8:27",sksh_gra:"9:15",szt_mga:"9:53",szt_gra:"10:25",chatzot:"12:46",shkia:"19:47",tzeit:"20:05"},
-  20260714:{netz:"5:44",sksh_mga:"8:27",sksh_gra:"9:15",szt_mga:"9:53",szt_gra:"10:25",chatzot:"12:46",shkia:"19:47",tzeit:"20:05"},
-  20260715:{netz:"5:45",sksh_mga:"8:27",sksh_gra:"9:15",szt_mga:"9:54",szt_gra:"10:26",chatzot:"12:46",shkia:"19:47",tzeit:"20:05"},
-  20260716:{netz:"5:46",sksh_mga:"8:28",sksh_gra:"9:16",szt_mga:"9:54",szt_gra:"10:26",chatzot:"12:46",shkia:"19:46",tzeit:"20:04"},
-  20260717:{netz:"5:46",sksh_mga:"8:28",sksh_gra:"9:16",szt_mga:"9:54",szt_gra:"10:26",chatzot:"12:46",shkia:"19:46",tzeit:"20:04"},
-  20260718:{netz:"5:47",sksh_mga:"8:28",sksh_gra:"9:16",szt_mga:"9:54",szt_gra:"10:26",chatzot:"12:46",shkia:"19:46",tzeit:"20:04"},
-  20260719:{netz:"5:47",sksh_mga:"8:29",sksh_gra:"9:17",szt_mga:"9:55",szt_gra:"10:27",chatzot:"12:46",shkia:"19:45",tzeit:"20:03"},
-  20260720:{netz:"5:48",sksh_mga:"8:29",sksh_gra:"9:17",szt_mga:"9:55",szt_gra:"10:27",chatzot:"12:46",shkia:"19:45",tzeit:"20:03"},
-  20260721:{netz:"5:49",sksh_mga:"8:29",sksh_gra:"9:17",szt_mga:"9:55",szt_gra:"10:27",chatzot:"12:46",shkia:"19:44",tzeit:"20:02"},
-  20260722:{netz:"5:49",sksh_mga:"8:30",sksh_gra:"9:18",szt_mga:"9:55",szt_gra:"10:27",chatzot:"12:46",shkia:"19:44",tzeit:"20:02"},
-  20260723:{netz:"5:50",sksh_mga:"8:30",sksh_gra:"9:18",szt_mga:"9:56",szt_gra:"10:28",chatzot:"12:46",shkia:"19:43",tzeit:"20:01"},
-  20260724:{netz:"5:50",sksh_mga:"8:30",sksh_gra:"9:18",szt_mga:"9:56",szt_gra:"10:28",chatzot:"12:46",shkia:"19:43",tzeit:"20:01"},
-  20260725:{netz:"5:51",sksh_mga:"8:31",sksh_gra:"9:19",szt_mga:"9:56",szt_gra:"10:28",chatzot:"12:47",shkia:"19:42",tzeit:"20:00"},
-  20260726:{netz:"5:52",sksh_mga:"8:31",sksh_gra:"9:19",szt_mga:"9:56",szt_gra:"10:28",chatzot:"12:47",shkia:"19:41",tzeit:"19:59"},
-  20260727:{netz:"5:52",sksh_mga:"8:31",sksh_gra:"9:19",szt_mga:"9:56",szt_gra:"10:28",chatzot:"12:47",shkia:"19:41",tzeit:"19:59"},
-  20260728:{netz:"5:53",sksh_mga:"8:32",sksh_gra:"9:20",szt_mga:"9:57",szt_gra:"10:29",chatzot:"12:46",shkia:"19:40",tzeit:"19:58"},
-  20260729:{netz:"5:54",sksh_mga:"8:32",sksh_gra:"9:20",szt_mga:"9:57",szt_gra:"10:29",chatzot:"12:46",shkia:"19:39",tzeit:"19:57"},
-  20260730:{netz:"5:54",sksh_mga:"8:32",sksh_gra:"9:20",szt_mga:"9:57",szt_gra:"10:29",chatzot:"12:46",shkia:"19:39",tzeit:"19:57"},
-  20260731:{netz:"5:55",sksh_mga:"8:33",sksh_gra:"9:21",szt_mga:"9:57",szt_gra:"10:29",chatzot:"12:46",shkia:"19:38",tzeit:"19:56"},
-  20260801:{netz:"5:56",sksh_mga:"8:33",sksh_gra:"9:21",szt_mga:"9:57",szt_gra:"10:29",chatzot:"12:46",shkia:"19:37",tzeit:"19:55"},
-  20260802:{netz:"5:56",sksh_mga:"8:33",sksh_gra:"9:21",szt_mga:"9:58",szt_gra:"10:30",chatzot:"12:46",shkia:"19:36",tzeit:"19:54"},
-  20260803:{netz:"5:57",sksh_mga:"8:34",sksh_gra:"9:22",szt_mga:"9:58",szt_gra:"10:30",chatzot:"12:46",shkia:"19:36",tzeit:"19:54"},
-  20260804:{netz:"5:58",sksh_mga:"8:34",sksh_gra:"9:22",szt_mga:"9:58",szt_gra:"10:30",chatzot:"12:46",shkia:"19:35",tzeit:"19:53"},
-  20260805:{netz:"5:58",sksh_mga:"8:34",sksh_gra:"9:22",szt_mga:"9:58",szt_gra:"10:30",chatzot:"12:46",shkia:"19:34",tzeit:"19:52"},
-  20260806:{netz:"5:59",sksh_mga:"8:34",sksh_gra:"9:22",szt_mga:"9:58",szt_gra:"10:30",chatzot:"12:46",shkia:"19:33",tzeit:"19:51"},
-  20260807:{netz:"6:00",sksh_mga:"8:35",sksh_gra:"9:23",szt_mga:"9:58",szt_gra:"10:30",chatzot:"12:46",shkia:"19:32",tzeit:"19:50"},
-  20260808:{netz:"6:00",sksh_mga:"8:35",sksh_gra:"9:23",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:46",shkia:"19:31",tzeit:"19:49"},
-  20260809:{netz:"6:01",sksh_mga:"8:35",sksh_gra:"9:23",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:46",shkia:"19:30",tzeit:"19:48"},
-  20260810:{netz:"6:01",sksh_mga:"8:35",sksh_gra:"9:23",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:45",shkia:"19:29",tzeit:"19:47"},
-  20260811:{netz:"6:02",sksh_mga:"8:36",sksh_gra:"9:24",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:45",shkia:"19:28",tzeit:"19:46"},
-  20260812:{netz:"6:03",sksh_mga:"8:36",sksh_gra:"9:24",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:45",shkia:"19:27",tzeit:"19:45"},
-  20260813:{netz:"6:03",sksh_mga:"8:36",sksh_gra:"9:24",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:45",shkia:"19:26",tzeit:"19:44"},
-  20260814:{netz:"6:04",sksh_mga:"8:36",sksh_gra:"9:24",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:45",shkia:"19:25",tzeit:"19:43"},
-  20260815:{netz:"6:05",sksh_mga:"8:37",sksh_gra:"9:25",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:45",shkia:"19:24",tzeit:"19:42"},
-  20260816:{netz:"6:05",sksh_mga:"8:37",sksh_gra:"9:25",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:44",shkia:"19:23",tzeit:"19:41"},
-  20260817:{netz:"6:06",sksh_mga:"8:37",sksh_gra:"9:25",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:44",shkia:"19:22",tzeit:"19:40"},
-  20260818:{netz:"6:07",sksh_mga:"8:37",sksh_gra:"9:25",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:44",shkia:"19:21",tzeit:"19:39"},
-  20260819:{netz:"6:07",sksh_mga:"8:37",sksh_gra:"9:25",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:44",shkia:"19:20",tzeit:"19:38"},
-  20260820:{netz:"6:08",sksh_mga:"8:38",sksh_gra:"9:26",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:43",shkia:"19:19",tzeit:"19:37"},
-  20260821:{netz:"6:09",sksh_mga:"8:38",sksh_gra:"9:26",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:43",shkia:"19:18",tzeit:"19:36"},
-  20260822:{netz:"6:09",sksh_mga:"8:38",sksh_gra:"9:26",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:43",shkia:"19:17",tzeit:"19:35"},
-  20260823:{netz:"6:10",sksh_mga:"8:38",sksh_gra:"9:26",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:43",shkia:"19:16",tzeit:"19:34"},
-  20260824:{netz:"6:10",sksh_mga:"8:38",sksh_gra:"9:26",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:42",shkia:"19:15",tzeit:"19:33"},
-  20260825:{netz:"6:11",sksh_mga:"8:39",sksh_gra:"9:27",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:42",shkia:"19:13",tzeit:"19:31"},
-  20260826:{netz:"6:12",sksh_mga:"8:39",sksh_gra:"9:27",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:42",shkia:"19:12",tzeit:"19:30"},
-  20260827:{netz:"6:12",sksh_mga:"8:39",sksh_gra:"9:27",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:42",shkia:"19:11",tzeit:"19:29"},
-  20260828:{netz:"6:13",sksh_mga:"8:39",sksh_gra:"9:27",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:41",shkia:"19:10",tzeit:"19:28"},
-  20260829:{netz:"6:13",sksh_mga:"8:39",sksh_gra:"9:27",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:41",shkia:"19:09",tzeit:"19:27"},
-  20260830:{netz:"6:14",sksh_mga:"8:39",sksh_gra:"9:27",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:41",shkia:"19:07",tzeit:"19:25"},
-  20260831:{netz:"6:15",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:40",shkia:"19:06",tzeit:"19:24"},
-  20260901:{netz:"6:15",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:40",shkia:"19:05",tzeit:"19:23"},
-  20260902:{netz:"6:16",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:40",shkia:"19:04",tzeit:"19:22"},
-  20260903:{netz:"6:17",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:39",shkia:"19:02",tzeit:"19:20"},
-  20260904:{netz:"6:17",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:39",shkia:"19:01",tzeit:"19:19"},
-  20260905:{netz:"6:18",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:39",shkia:"19:00",tzeit:"19:18"},
-  20260906:{netz:"6:18",sksh_mga:"8:40",sksh_gra:"9:28",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:38",shkia:"18:59",tzeit:"19:17"},
-  20260907:{netz:"6:19",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:38",shkia:"18:57",tzeit:"19:15"},
-  20260908:{netz:"6:20",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:38",shkia:"18:56",tzeit:"19:14"},
-  20260909:{netz:"6:20",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:37",shkia:"18:55",tzeit:"19:13"},
-  20260910:{netz:"6:21",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:37",shkia:"18:53",tzeit:"19:11"},
-  20260911:{netz:"6:21",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:37",shkia:"18:52",tzeit:"19:10"},
-  20260912:{netz:"6:22",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:36",shkia:"18:51",tzeit:"19:09"},
-  20260913:{netz:"6:23",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:36",shkia:"18:50",tzeit:"19:08"},
-  20260914:{netz:"6:23",sksh_mga:"8:41",sksh_gra:"9:29",szt_mga:"10:00",szt_gra:"10:32",chatzot:"12:36",shkia:"18:48",tzeit:"19:06"},
-  20260915:{netz:"6:24",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:35",shkia:"18:47",tzeit:"19:05"},
-  20260916:{netz:"6:24",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:35",shkia:"18:46",tzeit:"19:04"},
-  20260917:{netz:"6:25",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:35",shkia:"18:44",tzeit:"19:02"},
-  20260918:{netz:"6:26",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:34",shkia:"18:43",tzeit:"19:01"},
-  20260919:{netz:"6:26",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:34",shkia:"18:42",tzeit:"19:00"},
-  20260920:{netz:"6:27",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:34",shkia:"18:40",tzeit:"18:58"},
-  20260921:{netz:"6:27",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:33",shkia:"18:39",tzeit:"18:57"},
-  20260922:{netz:"6:28",sksh_mga:"8:42",sksh_gra:"9:30",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:33",shkia:"18:38",tzeit:"18:56"},
-  20260923:{netz:"6:29",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:33",shkia:"18:36",tzeit:"18:54"},
-  20260924:{netz:"6:29",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:32",shkia:"18:35",tzeit:"18:53"},
-  20260925:{netz:"6:30",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:32",shkia:"18:34",tzeit:"18:52"},
-  20260926:{netz:"6:30",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:31",shkia:"18:32",tzeit:"18:50"},
-  20260927:{netz:"6:31",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:31",shkia:"18:31",tzeit:"18:49"},
-  20260928:{netz:"6:32",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:31",shkia:"18:30",tzeit:"18:48"},
-  20260929:{netz:"6:32",sksh_mga:"8:43",sksh_gra:"9:31",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:30",shkia:"18:29",tzeit:"18:47"},
-  20260930:{netz:"6:33",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:30",shkia:"18:27",tzeit:"18:45"},
-  20261001:{netz:"6:34",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:30",shkia:"18:26",tzeit:"18:44"},
-  20261002:{netz:"6:34",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:29",shkia:"18:25",tzeit:"18:43"},
-  20261003:{netz:"6:35",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:29",shkia:"18:23",tzeit:"18:41"},
-  20261004:{netz:"6:35",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:29",shkia:"18:22",tzeit:"18:40"},
-  20261005:{netz:"6:36",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:29",shkia:"18:21",tzeit:"18:39"},
-  20261006:{netz:"6:37",sksh_mga:"8:44",sksh_gra:"9:32",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:28",shkia:"18:20",tzeit:"18:38"},
-  20261007:{netz:"6:37",sksh_mga:"8:45",sksh_gra:"9:33",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:28",shkia:"18:18",tzeit:"18:36"},
-  20261008:{netz:"6:38",sksh_mga:"8:45",sksh_gra:"9:33",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:28",shkia:"18:17",tzeit:"18:35"},
-  20261009:{netz:"6:39",sksh_mga:"8:45",sksh_gra:"9:33",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:27",shkia:"18:16",tzeit:"18:34"},
-  20261010:{netz:"6:39",sksh_mga:"8:45",sksh_gra:"9:33",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:27",shkia:"18:15",tzeit:"18:33"},
-  20261011:{netz:"6:40",sksh_mga:"8:45",sksh_gra:"9:33",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:27",shkia:"18:13",tzeit:"18:31"},
-  20261012:{netz:"6:41",sksh_mga:"8:46",sksh_gra:"9:34",szt_mga:"9:59",szt_gra:"10:31",chatzot:"12:27",shkia:"18:12",tzeit:"18:30"}
-};
-
-
-// Omer: starts 16 Nisan 5786 = April 4, 2026 (evening of April 3)
-// Day 1 of Omer = night of April 3/morning of April 4 2026
-// We count the omer during the day of that date
-var OMER_START_KEY = 20260403; // day 1 = 16 Nisan = April 3 2026 // day 1
-
-var OMER_WEEKS = [
-  ["","חסד","גבורה","תפארת","נצח","הוד","יסוד","מלכות"],
-  ["","חסד","גבורה","תפארת","נצח","הוד","יסוד","מלכות"]
-];
-
-var WEEK_NAMES = ["","חסד","גבורה","תפארת","נצח","הוד","יסוד","מלכות"];
-var DAY_NAMES_OMER = ["","חסד","גבורה","תפארת","נצח","הוד","יסוד","מלכות"];
-
-var OMER_NUMS = ["","יום אחד","שני ימים","שלשה ימים","ארבעה ימים","חמישה ימים","ששה ימים","שבוע אחד",
-  "שבוע אחד ויום אחד","שבוע אחד ושני ימים","שבוע אחד ושלשה ימים","שבוע אחד וארבעה ימים","שבוע אחד וחמישה ימים","שבוע אחד וששה ימים","שני שבועות",
-  "שני שבועות ויום אחד","שני שבועות ושני ימים","שני שבועות ושלשה ימים","שני שבועות וארבעה ימים","שני שבועות וחמישה ימים","שני שבועות וששה ימים","שלשה שבועות",
-  "שלשה שבועות ויום אחד","שלשה שבועות ושני ימים","שלשה שבועות ושלשה ימים","שלשה שבועות וארבעה ימים","שלשה שבועות וחמישה ימים","שלשה שבועות וששה ימים","ארבעה שבועות",
-  "ארבעה שבועות ויום אחד","ארבעה שבועות ושני ימים","ארבעה שבועות ושלשה ימים","ארבעה שבועות וארבעה ימים","ארבעה שבועות וחמישה ימים","ארבעה שבועות וששה ימים","חמישה שבועות",
-  "חמישה שבועות ויום אחד","חמישה שבועות ושני ימים","חמישה שבועות ושלשה ימים","חמישה שבועות וארבעה ימים","חמישה שבועות וחמישה ימים","חמישה שבועות וששה ימים","ששה שבועות",
-  "ששה שבועות ויום אחד","ששה שבועות ושני ימים","ששה שבועות ושלשה ימים","ששה שבועות וארבעה ימים","ששה שבועות וחמישה ימים","ששה שבועות וששה ימים","שבעה שבועות"
-];
-
-function getOmerDay() {
-  var tk = todayKey();
-  // OMER_START_KEY = 20260404 = day 1, last day = 20260523 = day 49
-  if (tk < OMER_START_KEY) { return 0; }
-  // Calculate days difference — day 1 = April 3 2026 (16 Nisan 5786)
-  var startY=2026, startM=4, startD=3;
-  var now=new Date();
-  var start=new Date(startY,startM-1,startD);
-  var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  var diff=Math.round((today-start)/(1000*60*60*24))+1;
-  if (diff < 1 || diff > 49) { return 0; }
-  return diff;
-}
-
-function renderOmer() {
-  var box = document.getElementById('omerBox');
-  if (!box) { return; }
-  var day = getOmerDay();
-  if (!day) { box.innerHTML=''; return; }
-  var weeks = Math.floor((day-1)/7);
-  var days = (day-1)%7;
-  var weekName = WEEK_NAMES[weeks+1]||'';
-  var dayInWeek = DAY_NAMES_OMER[days+1]||'';
-  var sefirah = weekName && dayInWeek ? dayInWeek+' שב'+weekName : '';
-  var txt = OMER_NUMS[day]||'';
-  box.innerHTML='<div class="omer-box">' +
-    '<div class="omer-label">ספירת העומר היום</div>' +
-    '<div class="omer-num">יום '+day+'</div>' +
-    '<div class="omer-weeks">'+txt+'</div>' +
-    (sefirah?'<div class="omer-weeks" style="margin-top:.2rem;font-size:.8rem;">'+sefirah+'</div>':'') +
-    '</div>';
-}
-
-function renderZmanim() {
-  var tk = todayKey();
-  var z = ZMANIM[tk];
-  function setZ(id, val) { var e=document.getElementById(id); if(e){e.textContent=val||'—';} }
-  if (!z) {
-    setZ('z_netz','—'); setZ('z_sksh_mga','—'); setZ('z_sksh_gra','—');
-    setZ('z_szt_mga','—'); setZ('z_szt_gra','—'); setZ('z_chatzot','—');
-    setZ('z_shkia','—'); setZ('z_tzeit','—');
-  } else {
-    setZ('z_netz',z.netz); setZ('z_sksh_mga',z.sksh_mga); setZ('z_sksh_gra',z.sksh_gra);
-    setZ('z_szt_mga',z.szt_mga); setZ('z_szt_gra',z.szt_gra); setZ('z_chatzot',z.chatzot);
-    setZ('z_shkia',z.shkia); setZ('z_tzeit',z.tzeit);
-  }
-  renderOmer();
-}
-
 function sw(name){
-  var names=['today','shabbat','fixed','shiurim','cal','ann','donate','zmanim','share'];
+  var names=['today','shabbat','fixed','shiurim','cal','ann','donate','share'];
   var btns=document.querySelectorAll('.tab-btn');
   var tabs=document.querySelectorAll('.tab-content');
   var i;
@@ -839,7 +569,6 @@ function sw(name){
 
 updateClock();
 updateNext();
-renderZmanim();
 renderToday();
 renderShabbat();
 renderFixed();
