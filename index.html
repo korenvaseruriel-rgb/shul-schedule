@@ -118,8 +118,10 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
     <span class="clock-time" id="cTime">--:--:--</span>
   </div>
   <div style="margin-top:.7rem;position:relative;text-align:center;">
-    <div style="font-size:.85rem;color:#f5d98a;font-weight:400;" id="cHebDate"></div>
-    <div style="font-size:.72rem;color:#c9a96e;font-weight:300;margin-top:.15rem;" id="cOmer"></div>
+    <div style="font-size:.85rem;color:#f5d98a;font-weight:500;" id="cHebDate"></div>
+    <div style="font-size:.85rem;color:#f5d98a;font-weight:500;margin-top:.2rem;" id="cOmer"></div>
+    <div style="font-size:.72rem;color:#c9a96e;font-weight:300;margin-top:.1rem;" id="cOmerSub"></div>
+    <div style="font-size:.72rem;color:#c9a96e;font-weight:300;margin-top:.15rem;" id="cDate"></div>
   </div>
 </div>
 
@@ -132,6 +134,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
+    <button class="tab-btn" onclick="sw('seder')">סדר היום</button>
     <button class="tab-btn" onclick="sw('shabbat')">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
@@ -143,6 +146,40 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div class="tab-content active" id="tab-today">
     <div class="sec-title"><span id="todayLbl">תפילות היום</span></div>
     <div id="todayContent"></div>
+  </div>
+
+  <div class="tab-content" id="tab-seder">
+    <div class="sec-title">סדר היום — ימות החול</div>
+    <div class="fb">
+      <div class="fr"><span class="fl">דף יומי — ר׳ פוגל</span><span class="ft">5:25</span></div>
+      <div class="fr"><span class="fl">שחרית א׳</span><span class="ft">6:15 (ברכו 6:25)</span></div>
+      <div class="fr"><span class="fl">שחרית א׳ ראש חודש</span><span class="ft">6:05 (ברכו 6:15)</span></div>
+      <div class="fr"><span class="fl">דף יומי — ר׳ זילבר</span><span class="ft">7:00</span></div>
+      <div class="fr"><span class="fl">שחרית ב׳</span><span class="ft">7:00</span></div>
+      <div class="fr"><span class="fl">שחרית ג׳</span><span class="ft">8:30</span></div>
+      <div class="fr"><span class="fl">כולל חבורה — הרב קירשנבוים שליט"א (א׳–ה׳)</span><span class="ft">11:15–13:15</span></div>
+      <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:20</span></div>
+      <div class="fr"><span class="fl">מנחה גדולה — יום שישי</span><span class="ft">13:30</span></div>
+      <div class="fr"><span class="fl">מנחה</span><span class="ft">רבע שעה לפני השקיעה</span></div>
+      <div class="fr"><span class="fl">מעריב א׳</span><span class="ft">20 דקות אחרי השקיעה</span></div>
+      <div class="fr"><span class="fl">שיעור הלכה — ר׳ שריון (ב׳ ד׳)</span><span class="ft">20:35</span></div>
+      <div class="fr"><span class="fl">דף יומי — ר׳ זילבר</span><span class="ft">21:00</span></div>
+      <div class="fr"><span class="fl">מעריב ב׳</span><span class="ft">22:00</span></div>
+    </div>
+    <div class="sec-title">סדר היום — שבת קודש</div>
+    <div class="fb">
+      <div class="fr"><span class="fl">מנחה גדולה — יום שישי</span><span class="ft">13:30</span></div>
+      <div class="fr"><span class="fl">מניין שבת מוקדם — מנחה</span><span class="ft">15 דק׳ לפני הפלג המנחה</span></div>
+      <div class="fr"><span class="fl">מנחה וקבלת שבת</span><span class="ft">רבע שעה לפני השקיעה</span></div>
+      <div class="fr"><span class="fl">מעריב שבת</span><span class="ft">20 דקות אחרי השקיעה</span></div>
+      <div class="fr"><span class="fl">שחרית</span><span class="ft">8:30</span></div>
+      <div class="fr"><span class="fl">מנחה גדולה שבת</span><span class="ft">13:30</span></div>
+      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">15 דק׳ לפני מנחה קטנה</span></div>
+      <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">50 דק׳ לפני מנחה קטנה</span></div>
+      <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">40 דקות לפני השקיעה</span></div>
+      <div class="fr"><span class="fl">מעריב — מוצאי שבת</span><span class="ft">בזמן צאת השבת</span></div>
+      <div class="fr"><span class="fl">מעריב ב׳</span><span class="ft">20 דקות אחרי צאת השבת</span></div>
+    </div>
   </div>
 
   <div class="tab-content" id="tab-shabbat">
@@ -507,17 +544,18 @@ function updateClock() {
   var days=["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
   var months=["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"];
   var hd=getHebDate();
-  var greg="יום "+days[now.getDay()]+", "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
-  var hebLine = hd ? hd+" תשפ\"ו | "+greg : greg;
-  document.getElementById('cHebDate').textContent=hebLine;
+  document.getElementById('cHebDate').textContent=hd ? hd+" תשפ\"ו" : "";
+  document.getElementById('cDate').textContent="יום "+days[now.getDay()]+", "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
   var omer=getOmerDay();
   var omerEl=document.getElementById('cOmer');
-  if(omerEl){omerEl.textContent=omer>0?omer+" בעומר":"";}
+  var omerSub=document.getElementById('cOmerSub');
+  if(omerEl){omerEl.textContent=omer>0?"היום "+omer+" ימים לעומר":"";}
+  if(omerSub){omerSub.textContent=omer>0?"שהם "+OMER_NUMS[omer]:"";}
 }
 
 var BASE_ANNS=[
   {id:1,text:"מזל טוב למשפחת בלוי לרגל אירוסי בנם ראובן! יזכו לבנות בית נאמן בישראל",date:"24.4.2026"},
-  {id:2,text:"מתגבש שיעור מאת הרב בנימין יעקבזון בספר הכוזרי — כל יום ג' בשעה 21:15, מעריב 22:00",date:"24.4.2026"}
+  {id:2,text:"מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב.",date:"24.4.2026"}
 ];
 
 function loadAnns() {
@@ -560,7 +598,7 @@ function renderAnns(){
   for(i=0;i<anns.length;i++){
     a=anns[i];
     html+='<div class="ann-item">';
-    if(adminUnlocked&&a.id>1000){html+='<button class="ann-del" onclick="delAnn('+a.id+')">&#x2715;</button>';}
+    if(adminUnlocked){html+='<button class="ann-del" onclick="delAnn('+a.id+')">&#x2715;</button>';}
     html+='<div class="ann-txt">'+a.text+'</div></div>';
   }
   el.innerHTML=html;
@@ -841,7 +879,7 @@ function renderZmanim() {
 }
 
 function sw(name){
-  var names=['today','fixed','shabbat','shiurim','cal','ann','donate','share'];
+  var names=['today','fixed','seder','shabbat','shiurim','cal','ann','donate','share'];
   var btns=document.querySelectorAll('.tab-btn');
   var tabs=document.querySelectorAll('.tab-content');
   var i;
