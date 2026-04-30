@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4W97T25KB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-T4W97T25KB');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>בית הכנסת זכרון משה — זמני תפילה</title>
@@ -164,6 +155,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <div class="fr"><span class="fl">שחרית א׳</span><span class="ft">6:15 (ברכו 6:25)</span></div>
       <div class="fr"><span class="fl">שחרית א׳ ראש חודש</span><span class="ft">6:05 (ברכו 6:15)</span></div>
       <div class="fr"><span class="fl">דף יומי — ר׳ זילבר</span><span class="ft">7:00</span></div>
+      <div class="fr"><span class="fl">דף יומי — ר׳ באום (באנגלית)</span><span class="ft">7:00</span></div>
       <div class="fr"><span class="fl">שחרית ב׳</span><span class="ft">7:00</span></div>
       <div class="fr"><span class="fl">שחרית ג׳</span><span class="ft">8:30</span></div>
       <div class="fr"><span class="fl">כולל חבורה — הרב קירשנבוים שליט"א (א׳–ה׳)</span><span class="ft">11:15–13:15</span></div>
@@ -211,7 +203,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:20</span></div>
       <div class="fr"><span class="fl">מנחה גדולה — יום שישי</span><span class="ft">13:30</span></div>
       <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft" id="fixedMK">—</span></div>
-      <div class="fr"><span class="fl">יום כיפור קטן (ערב ראש חודש)</span><span class="ft">13:15</span></div>
     </div>
     <div class="fb"><div class="fb-hdr">מעריב — השבוע</div>
       <div class="fr"><span class="fl">מעריב א׳</span><span class="ft" id="fixedM1">—</span></div>
@@ -562,22 +553,21 @@ function updateClock() {
   if(omerSub){omerSub.textContent=omer>0?"שהם "+OMER_NUMS[omer]:"";}
 }
 
-var BASE_ANNS=[
+var DEFAULT_ANNS=[
   {id:1,text:"מזל טוב למשפחת בלוי לרגל אירוסי בנם ראובן! יזכו לבנות בית נאמן בישראל",date:"24.4.2026"},
   {id:2,text:"מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב.",date:"24.4.2026"}
 ];
 
-function loadAnns() {
-  try {
-    var saved=JSON.parse(localStorage.getItem('zkr_anns')||'[]'), userAdded=[], i;
-    for(i=0;i<saved.length;i++){if(saved[i].id>1000){userAdded.push(saved[i]);}}
-    return BASE_ANNS.concat(userAdded);
-  } catch(e) { return BASE_ANNS.slice(); }
+function loadAnns(){
+  try{
+    var saved=localStorage.getItem('zkr_anns_v2');
+    if(saved!==null){return JSON.parse(saved);}
+    // First time - load defaults
+    return DEFAULT_ANNS.slice();
+  }catch(e){return DEFAULT_ANNS.slice();}
 }
-function saveAnns() {
-  var toSave=[], i;
-  for(i=0;i<anns.length;i++){if(anns[i].id>1000){toSave.push(anns[i]);}}
-  try{localStorage.setItem('zkr_anns',JSON.stringify(toSave));}catch(e){}
+function saveAnns(){
+  try{localStorage.setItem('zkr_anns_v2',JSON.stringify(anns));}catch(e){}
 }
 
 var anns=loadAnns(), adminMode=false, adminUnlocked=false;
@@ -616,8 +606,7 @@ function delAnn(id){
   var na=[], i;
   for(i=0;i<anns.length;i++){if(anns[i].id!==id){na.push(anns[i]);}}
   anns=na; saveAnns(); renderAnns();
-}
-function addAnn(){
+}function addAnn(){
   var txt=document.getElementById('annInput').value.trim();
   if(!txt){return;}
   var n=new Date();
