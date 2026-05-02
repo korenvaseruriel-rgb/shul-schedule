@@ -141,8 +141,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div class="main">
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
-    <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
-    <button class="tab-btn" onclick="sw('seder')">סדר היום</button>
     <button class="tab-btn" onclick="sw('shabbat')">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
@@ -489,11 +487,25 @@ function updateNext() {
 
 function shRow(n,t){return '<div class="sh-row"><span class="sh-rn">'+n+'</span><span class="sh-rt">'+(t||'—')+'</span></div>';}
 
+function addMins(t, mins) {
+  if(!t) return null;
+  var total = pt(t) + mins;
+  return pad(Math.floor(total/60))+':'+pad(total%60);
+}
+
 function renderShabbat() {
   var p=SCH[AI];
+  // mk = מנחה קטנה ערב שבת
+  // הדלקת נרות = mk מינוס 25 דק'
+  // שקיעה = mk פלוס 15 דק'
+  var shkia_erev = p.mk ? addMins(p.mk, 15) : null;
+  var hadlaka = p.mk ? addMins(p.mk, -25) : null;
+
   var fri=[{n:"מנחה גדולה",t:"13:30"}];
   if(p.se){fri.push({n:"שבת מוקדם",t:p.se});}
+  if(hadlaka){fri.push({n:"הדלקת נרות",t:hadlaka});}
   if(p.ks){fri.push({n:"קבלת שבת",t:p.ks});}
+  if(shkia_erev){fri.push({n:"שקיעה",t:shkia_erev});}
   if(p.mv){fri.push({n:"מעריב",t:p.mv});}
   fri.sort(function(a,b){return pt(a.t)-pt(b.t);});
   var i, html='<div class="sh-hdr"><div><div class="sh-plabel">פרשת השבוע</div><div class="sh-pname">'+p.p+'</div></div><div class="sh-date">'+p.d+'.'+p.mo+'.'+p.y+'</div></div>';
@@ -885,7 +897,7 @@ function renderZmanim() {
 }
 
 function sw(name){
-  var names=['today','fixed','seder','shabbat','shiurim','cal','ann','donate','share'];
+  var names=['today','shabbat','shiurim','cal','ann','donate','share'];
   var btns=document.querySelectorAll('.tab-btn');
   var tabs=document.querySelectorAll('.tab-content');
   var i;
