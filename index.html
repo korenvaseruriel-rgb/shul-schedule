@@ -573,24 +573,30 @@ function updateClock() {
   if(omerSub){omerSub.textContent=omer>0?"שהם "+OMER_NUMS[omer]:"";}
 }
 
-var DEFAULT_ANNS=[
-  {id:1,text:"מזל טוב למשפחת בלוי לרגל אירוסי בנם ראובן! יזכו לבנות בית נאמן בישראל",date:"24.4.2026"},
-  {id:2,text:"מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב.",date:"24.4.2026"}
-];
+var SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR9AYfwbt6XlVODM86RBxckPAsfGu-g8dNvq_yvxJkCrC3A-oE6lnJu7rW3F0Kt_1QUEqXsV1TiHdVW/pub?gid=0&single=true&output=csv';
 
-function loadAnns(){
-  try{
-    var saved=localStorage.getItem('zkr_anns_v2');
-    if(saved!==null){return JSON.parse(saved);}
-    // First time - load defaults
-    return DEFAULT_ANNS.slice();
-  }catch(e){return DEFAULT_ANNS.slice();}
-}
-function saveAnns(){
-  try{localStorage.setItem('zkr_anns_v2',JSON.stringify(anns));}catch(e){}
-}
+var anns = [];
+var adminMode = false;
+var adminUnlocked = false;
 
-var anns=loadAnns(), adminMode=false, adminUnlocked=false;
+function loadAnnsFromSheets() {
+  fetch(SHEETS_URL + '&t=' + Date.now())
+    .then(function(r){ return r.text(); })
+    .then(function(csv){
+      var lines = csv.split('\n');
+      var result = [];
+      for(var i=1; i<lines.length; i++){
+        var line = lines[i].replace(/^"|"$/g,'').replace(/\r/g,'').trim();
+        if(line){ result.push({id:i, text:line}); }
+      }
+      anns = result;
+      renderAnns();
+    })
+    .catch(function(){
+      anns = [];
+      renderAnns();
+    });
+}
 
 function toggleAdmin(){
   adminMode=!adminMode;
@@ -617,21 +623,15 @@ function renderAnns(){
   for(i=0;i<anns.length;i++){
     a=anns[i];
     html+='<div class="ann-item">';
-    if(adminUnlocked){html+='<button class="ann-del" onclick="delAnn('+a.id+')">&#x2715;</button>';}
     html+='<div class="ann-txt">'+a.text+'</div></div>';
   }
   el.innerHTML=html;
 }
-function delAnn(id){
-  var na=[], i;
-  for(i=0;i<anns.length;i++){if(anns[i].id!==id){na.push(anns[i]);}}
-  anns=na; saveAnns(); renderAnns();
-}function addAnn(){
+function addAnn(){
   var txt=document.getElementById('annInput').value.trim();
   if(!txt){return;}
-  var n=new Date();
-  anns.unshift({id:Date.now(),text:txt,date:n.getDate()+'.'+(n.getMonth()+1)+'.'+n.getFullYear()});
-  saveAnns(); document.getElementById('annInput').value=''; renderAnns();
+  document.getElementById('annInput').value='';
+  alert('להוסיף הודעה — פתח את Google Sheets והוסף שורה חדשה. השינוי יופיע באתר תוך כדקה.');
 }
 
 function initShare(){document.getElementById('shareUrl').value='https://zichron-moshe-rbs.github.io/shul-schedule/';}
@@ -914,9 +914,10 @@ renderToday();
 renderShabbat();
 renderFixed();
 renderCal();
-renderAnns();
+loadAnnsFromSheets();
 setInterval(updateClock,1000);
 setInterval(function(){updateNext();renderToday();},30000);
+setInterval(loadAnnsFromSheets, 60000);
 </script>
 </body>
 </html>
