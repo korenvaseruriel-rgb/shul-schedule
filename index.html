@@ -498,13 +498,13 @@ function renderShabbat() {
   // mk = מנחה קטנה ערב שבת
   // הדלקת נרות = mk מינוס 25 דק'
   // שקיעה = mk פלוס 15 דק'
-  var shkia_erev = p.mk ? addMins(p.mk, 15) : null;
-  var hadlaka = p.mk ? addMins(p.mk, -25) : null;
+  var shkia_erev = p.ks ? addMins(p.ks, 15) : null;
+  var hadlaka = p.ks ? addMins(p.ks, -25) : null;
 
   var fri=[{n:"מנחה גדולה",t:"13:30"}];
   if(p.se){fri.push({n:"שבת מוקדם",t:p.se});}
   if(hadlaka){fri.push({n:"הדלקת נרות",t:hadlaka});}
-  if(p.ks){fri.push({n:"קבלת שבת",t:p.ks});}
+  if(p.ks){fri.push({n:"מנחה וקבלת שבת",t:p.ks});}
   if(shkia_erev){fri.push({n:"שקיעה",t:shkia_erev});}
   if(p.mv){fri.push({n:"מעריב",t:p.mv});}
   fri.sort(function(a,b){return pt(a.t)-pt(b.t);});
