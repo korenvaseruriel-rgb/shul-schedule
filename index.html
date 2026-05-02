@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>בית הכנסת זכרון משה — זמני תפילה</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4W97T25KB"></script>
@@ -253,19 +256,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   </div>
 
   <div class="tab-content" id="tab-ann">
-    <div class="sec-title">הודעות מזדמנות <button class="admin-btn" onclick="toggleAdmin()">ניהול</button></div>
-    <div id="adminArea" style="display:none;">
-      <div class="pass-box" id="passBox">
-        <p>הזן סיסמת מנהל:</p>
-        <input type="password" id="passInput" placeholder="סיסמה...">
-        <button class="btn-login" onclick="checkPass()">כניסה</button>
-        <p id="passErr" style="color:#c33;font-size:.75rem;margin-top:.3rem;display:none;">סיסמה שגויה</p>
-      </div>
-      <div class="add-form" id="addForm" style="display:none;">
-        <textarea id="annInput" placeholder="כתוב הודעה לקהילה..."></textarea>
-        <button class="btn-pub" onclick="addAnn()">פרסם הודעה</button>
-      </div>
-    </div>
+    <div class="sec-title">הודעות מזדמנות</div>
     <div id="annList"></div>
   </div>
 
@@ -449,17 +440,27 @@ function renderToday() {
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
+  var shacharitTomorrow = '<div class="pgrid">'
+    + '<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">6:15</div><div class="psub">ברכו 6:25</div></div>'
+    + '<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
+    + '<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">8:30</div><div class="psub">ברכו 8:45</div></div>'
+    + '</div>';
   if(isMotzei()){
-    content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — התפילה הבאה</div><div class="tb-name">שחרית א\' — מחר בבוקר</div><div class="tb-time">6:15</div><div class="tb-sub">ברכו 6:25 &bull; פרשת '+p.p+'</div></div>';
+    content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — תפילות שחרית מחר</div><div class="tb-name">פרשת '+p.p+'</div></div>'+shacharitTomorrow;
     return;
   }
   var prayers=getTodayPrayers(), n=nowMins(), nf=false, html='<div class="pgrid">', i, pr, pm, past, isNext;
   for(i=0;i<prayers.length;i++){
     pr=prayers[i]; pm=pt(pr.time); past=pm<n; isNext=!past&&!nf;
     if(isNext){nf=true;}
-    html+='<div class="pc'+(past?' past':'')+(isNext?' next':'')+'"><div class="pname">'+pr.name+'</div><div class="ptime">'+pr.time+'</div>'+(pr.sub?'<div class="psub">'+pr.sub+'</div>':'')+'</div>';
+    html+='<div class="pc'+(past?' past':'')+(isNext?' next':'')+'">'+'<div class="pname">'+pr.name+'</div><div class="ptime">'+pr.time+'</div>'+(pr.sub?'<div class="psub">'+pr.sub+'</div>':'')+'</div>';
   }
-  content.innerHTML=html+'</div>';
+  // If all prayers done - show tomorrow shacharit
+  if(!nf){
+    content.innerHTML=html+'</div><div style="margin-top:.8rem;"><div class="sec-title" style="margin-top:0;">שחרית מחר</div>'+shacharitTomorrow+'</div>';
+  } else {
+    content.innerHTML=html+'</div>';
+  }
 }
 
 function updateNext() {
@@ -573,65 +574,20 @@ function updateClock() {
   if(omerSub){omerSub.textContent=omer>0?"שהם "+OMER_NUMS[omer]:"";}
 }
 
-var SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR9AYfwbt6XlVODM86RBxckPAsfGu-g8dNvq_yvxJkCrC3A-oE6lnJu7rW3F0Kt_1QUEqXsV1TiHdVW/pub?gid=0&single=true&output=csv';
+var ANNS = [
+  "הדלקה לכבוד התנא האלוקי רבי שמעון בר יוחאי תתקיים בע\"ה בליל שלישי בחצר בית הכנסת. מעריב 19:46, הדלקה מיד אחרי מעריב. ההגרלה הגדולה של אבות ובנים חורף תשפ\"ו תתקיים מיד לאחר ההדלקה. נא להביא את כרטיסי אבות ובנים חורף תשפ\"ו. לילדים יחולקו הפתעות.",
+  "סיום מסכת מנחות לשיעורי דף היומי — ציבור הלומדים והמתפללים מוזמנים לסיום וסעודת מצוה, שיתקיים בליל ששי אור לכ\"א אייר בשעה 20:00. תפילת מעריב בשעה 22:00. תנו כבוד לתורה! תתקיים הרצאה מיוחדת הלכה למעשה איך מכינים קרבן מנחה, כולל תרגול והכנה של קרבן מנחה ומנחות שונות.",
+  "מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב."
+];
 
-var anns = [];
-var adminMode = false;
-var adminUnlocked = false;
-
-function loadAnnsFromSheets() {
-  fetch(SHEETS_URL + '&t=' + Date.now())
-    .then(function(r){ return r.text(); })
-    .then(function(csv){
-      var lines = csv.split('\n');
-      var result = [];
-      for(var i=1; i<lines.length; i++){
-        var line = lines[i].replace(/^"|"$/g,'').replace(/\r/g,'').trim();
-        if(line){ result.push({id:i, text:line}); }
-      }
-      anns = result;
-      renderAnns();
-    })
-    .catch(function(){
-      anns = [];
-      renderAnns();
-    });
-}
-
-function toggleAdmin(){
-  adminMode=!adminMode;
-  document.getElementById('adminArea').style.display=adminMode?'block':'none';
-  if(!adminMode){adminUnlocked=false;}
-  if(adminMode&&!adminUnlocked){
-    document.getElementById('passBox').style.display='block';
-    document.getElementById('addForm').style.display='none';
+function renderAnns() {
+  var el = document.getElementById('annList');
+  if (!ANNS.length) { el.innerHTML = '<div class="ann-empty">אין הודעות כרגע</div>'; return; }
+  var html = '';
+  for (var i = 0; i < ANNS.length; i++) {
+    html += '<div class="ann-item"><div class="ann-txt">' + ANNS[i] + '</div></div>';
   }
-  renderAnns();
-}
-function checkPass(){
-  if(document.getElementById('passInput').value===ADMIN_PASS){
-    adminUnlocked=true;
-    document.getElementById('passBox').style.display='none';
-    document.getElementById('addForm').style.display='block';
-  } else {
-    document.getElementById('passErr').style.display='block';
-  }
-}
-function renderAnns(){
-  var el=document.getElementById('annList'), html='', i, a;
-  if(!anns.length){el.innerHTML='<div class="ann-empty">אין הודעות כרגע</div>';return;}
-  for(i=0;i<anns.length;i++){
-    a=anns[i];
-    html+='<div class="ann-item">';
-    html+='<div class="ann-txt">'+a.text+'</div></div>';
-  }
-  el.innerHTML=html;
-}
-function addAnn(){
-  var txt=document.getElementById('annInput').value.trim();
-  if(!txt){return;}
-  document.getElementById('annInput').value='';
-  alert('להוסיף הודעה — פתח את Google Sheets והוסף שורה חדשה. השינוי יופיע באתר תוך כדקה.');
+  el.innerHTML = html;
 }
 
 function initShare(){document.getElementById('shareUrl').value='https://zichron-moshe-rbs.github.io/shul-schedule/';}
@@ -914,10 +870,9 @@ renderToday();
 renderShabbat();
 renderFixed();
 renderCal();
-loadAnnsFromSheets();
+renderAnns();
 setInterval(updateClock,1000);
 setInterval(function(){updateNext();renderToday();},30000);
-setInterval(loadAnnsFromSheets, 60000);
 </script>
 </body>
 </html>
