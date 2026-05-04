@@ -192,8 +192,8 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <div class="fr"><span class="fl">מעריב שבת</span><span class="ft">20 דקות אחרי השקיעה</span></div>
       <div class="fr"><span class="fl">שחרית</span><span class="ft">8:30</span></div>
       <div class="fr"><span class="fl">מנחה גדולה שבת</span><span class="ft">13:30</span></div>
-      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">15 דק׳ לפני מנחה קטנה</span></div>
       <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">50 דק׳ לפני מנחה קטנה</span></div>
+      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">15 דק׳ לפני מנחה קטנה</span></div>
       <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">40 דקות לפני השקיעה</span></div>
       <div class="fr"><span class="fl">מעריב — מוצאי שבת</span><span class="ft">בזמן צאת השבת</span></div>
       <div class="fr"><span class="fl">מעריב ב׳</span><span class="ft">20 דקות אחרי צאת השבת</span></div>
@@ -229,8 +229,8 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <div class="fr"><span class="fl">מעריב שבת</span><span class="ft">20 דק׳ אחרי השקיעה</span></div>
       <div class="fr"><span class="fl">שחרית</span><span class="ft">8:30</span></div>
       <div class="fr"><span class="fl">מנחה גדולה שבת</span><span class="ft">13:30</span></div>
-      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">15 דק׳ לפני מנחה קטנה</span></div>
       <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">50 דק׳ לפני מנחה קטנה</span></div>
+      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">15 דק׳ לפני מנחה קטנה</span></div>
       <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">40 דק׳ לפני השקיעה</span></div>
       <div class="fr"><span class="fl">מעריב א׳ — מוצאי שבת</span><span class="ft">בזמן צאת השבת</span></div>
       <div class="fr"><span class="fl">מעריב ב׳</span><span class="ft">20 דק׳ אחרי צאת השבת</span></div>
@@ -519,7 +519,7 @@ function renderShabbat() {
   html+='<div class="sh-sec">ערב שבת — יום שישי</div>';
   for(i=0;i<fri.length;i++){html+=shRow(fri[i].n,fri[i].t);}
   html+='<div class="sh-sec">שבת בבוקר ואחר הצהריים</div>';
-  html+=shRow("שחרית","8:30")+shRow("מנחה גדולה","13:30")+shRow("תהילים לילדים","15 דק' לפני מנחה קטנה")+shRow("אבות ובנים","50 דק' לפני מנחה קטנה")+shRow("מנחה קטנה",p.mk_s);
+  html+=shRow("שחרית","8:30")+shRow("מנחה גדולה","13:30")+shRow("אבות ובנים","50 דק' לפני מנחה קטנה")+shRow("תהילים לילדים","15 דק' לפני מנחה קטנה")+shRow("מנחה קטנה",p.mk_s);
   html+='<div class="sh-sec">מוצאי שבת</div>';
   html+=shRow("צאת השבת / מעריב א'",p.tz)+shRow("מעריב ב'",p.m1s);
   document.getElementById('shabbatBlock').innerHTML=html;
