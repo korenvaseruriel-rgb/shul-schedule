@@ -140,6 +140,9 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div id="lagBanner" style="display:none;background:linear-gradient(90deg,#5c3500,#3d2200);color:#f5d98a;padding:.9rem 1.2rem;text-align:center;font-family:'Frank Ruhl Libre',serif;font-size:1.1rem;font-weight:700;border-bottom:2px solid #c9a96e;">
   🔥 לג בעומר — הוד שבהוד 🔥
 </div>
+<div id="ykkBanner" style="display:none;background:#f5d98a;color:#3d2200;padding:.75rem 1.2rem;text-align:center;font-family:'Frank Ruhl Libre',serif;font-size:1rem;font-weight:700;border-bottom:2px solid #c9a96e;">
+  ⏰ תזכורת: תפילת יום כיפור קטן היום בשעה 13:15
+</div>
 
 <div class="next-banner">
   <div><span class="next-label">התפילה הקרובה</span><span class="next-name" id="nName">—</span><span class="next-cd" id="nCD"></span></div>
@@ -427,15 +430,29 @@ function getTodayPrayers() {
     for (i=0;i<arr.length;i++) { if(arr[i].time){result.push(arr[i]);} }
     return result;
   }
+  if (isFri) {
+    return [
+      {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"מנחה גדולה",time:"13:30",sub:"ערב שבת"},
+      {name:"מנחה קטנה",time:p.mk,sub:""},
+      {name:"קבלת שבת",time:p.ks,sub:""},
+      {name:"מעריב",time:p.mv,sub:""}
+    ];
+  }
+  var isErevRC = (todayKey()===20260519);
   return [
     {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
     {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
     {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
-    {name:"מנחה גדולה",time:isFri?"13:30":"13:20",sub:isFri?"ערב שבת":""},
-    {name:"מנחה קטנה",time:p.mk,sub:""},
+    {name:"מנחה גדולה",time:"13:20",sub:""},
+    isErevRC ? {name:"יום כיפור קטן",time:"13:15",sub:"ללא ויחל"} : null,
+    isErevRC ? {name:"מנחה גדולה",time:"13:20",sub:"אשרי ומנחה"} : {name:"מנחה קטנה",time:p.mk,sub:""},
+    !isErevRC ? null : {name:"מנחה קטנה",time:p.mk,sub:""},
     {name:"מעריב א'",time:p.m1,sub:""},
     {name:"מעריב ב'",time:"22:00",sub:""}
-  ];
+  ].filter(function(x){return x!==null;});
 }
 
 function renderToday() {
@@ -591,7 +608,12 @@ function updateClock() {
     if(omerSub){omerSub.textContent="";}
     if(omerSef){omerSef.textContent="";}
   }
-  // Lag baomer banner (day 33 = May 5 2026, evening of May 4)
+  // Yom kippur katan banner - erev rosh chodesh sivan = May 19 2026, until 14:00
+  var ykkBanner=document.getElementById('ykkBanner');
+  if(ykkBanner){
+    var isYKK = (tk===20260519 && nm2<840); // 840 = 14:00
+    ykkBanner.style.display = isYKK ? 'block' : 'none';
+  }
   var lagBanner=document.getElementById('lagBanner');
   if(lagBanner){
     var tk=todayKey(), nm2=nowMins();
