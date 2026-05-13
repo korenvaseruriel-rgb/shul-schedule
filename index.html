@@ -441,7 +441,7 @@ function getTodayPrayers() {
       {name:"מעריב",time:p.mv,sub:""}
     ];
   }
-  var isErevRC = (todayKey()===20260519);
+  var isErevRC = (todayKey()===20260514);
   return [
     {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
     {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
@@ -611,7 +611,7 @@ function updateClock() {
   // Yom kippur katan banner - erev rosh chodesh sivan = May 19 2026, until 14:00
   var ykkBanner=document.getElementById('ykkBanner');
   if(ykkBanner){
-    var isYKK = (tk===20260519 && nm2<840); // 840 = 14:00
+    var isYKK = (tk===20260514 && nm2<840); // 840 = 14:00
     ykkBanner.style.display = isYKK ? 'block' : 'none';
   }
   var lagBanner=document.getElementById('lagBanner');
