@@ -442,17 +442,27 @@ function getTodayPrayers() {
     ];
   }
   var isErevRC = (todayKey()===20260514);
+  if (isErevRC) {
+    return [
+      {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"יום כיפור קטן",time:"13:15",sub:"ללא ויחל"},
+      {name:"מנחה גדולה",time:"13:20",sub:"אשרי ומנחה"},
+      {name:"מנחה קטנה",time:p.mk,sub:""},
+      {name:"מעריב א'",time:p.m1,sub:""},
+      {name:"מעריב ב'",time:"22:00",sub:""}
+    ];
+  }
   return [
     {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
     {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
     {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
     {name:"מנחה גדולה",time:"13:20",sub:""},
-    isErevRC ? {name:"יום כיפור קטן",time:"13:15",sub:"ללא ויחל"} : null,
-    isErevRC ? {name:"מנחה גדולה",time:"13:20",sub:"אשרי ומנחה"} : {name:"מנחה קטנה",time:p.mk,sub:""},
-    !isErevRC ? null : {name:"מנחה קטנה",time:p.mk,sub:""},
+    {name:"מנחה קטנה",time:p.mk,sub:""},
     {name:"מעריב א'",time:p.m1,sub:""},
     {name:"מעריב ב'",time:"22:00",sub:""}
-  ].filter(function(x){return x!==null;});
+  ];
 }
 
 function renderToday() {
