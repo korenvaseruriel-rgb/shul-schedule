@@ -431,14 +431,16 @@ function getTodayPrayers() {
     return result;
   }
   if (isFri) {
-    return [
+    var fri = [
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
       {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
-      {name:"מנחה גדולה",time:"13:30",sub:"ערב שבת"},
-      {name:"מנחה וקבלת שבת",time:p.ks,sub:""},
-      {name:"מעריב",time:p.mv,sub:""}
+      {name:"מנחה גדולה",time:"13:30",sub:"ערב שבת"}
     ];
+    if(p.se){fri.push({name:"שבת מוקדם",time:p.se,sub:""});}
+    fri.push({name:"מנחה וקבלת שבת",time:p.ks,sub:""});
+    fri.push({name:"מעריב",time:p.mv,sub:""});
+    return fri;
   }
   var isErevRC = (todayKey()===20260514);
   if (isErevRC) {
