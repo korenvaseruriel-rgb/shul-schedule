@@ -412,6 +412,7 @@ var AI = getAI();
 function isShabbat() {
   return todayKey()===dateKey(SCH[AI]) && nowMins()<(pt(SCH[AI].tz)||1440);
 }
+function tomorrowKey(){var n=new Date();var t=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1);return t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate();}
 function isMotzei() {
   var now=new Date();
   if (now.getDay()!==6||AI===0) { return false; }
@@ -482,7 +483,8 @@ function renderToday() {
   var p=SCH[AI], hd=getHebDate();
   var label="יום "+dayNames[new Date().getDay()];
   if(hd){label+=" | "+hd+" תשפ\"ו";}
-  label+=" — פרשת "+p.p;
+  var isRC=(todayKey()===20260517);
+  label+= isRC ? " — ראש חודש סיון" : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
@@ -515,9 +517,10 @@ function renderToday() {
 
 function updateNext() {
   if(isMotzei()){
-    document.getElementById('nName').textContent="שחרית א' מחר";
-    document.getElementById('nTime').textContent="6:15";
-    document.getElementById('nCD').textContent="ברכו 6:25";
+    var rcTomorrow=(tomorrowKey()===20260517);
+    document.getElementById('nName').textContent=rcTomorrow?"שחרית א' — ראש חודש סיון":"שחרית א' מחר";
+    document.getElementById('nTime').textContent=rcTomorrow?"6:05":"6:15";
+    document.getElementById('nCD').textContent=rcTomorrow?"ברכו 6:15":"ברכו 6:25";
     return;
   }
   var prayers=getTodayPrayers();
