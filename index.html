@@ -442,6 +442,18 @@ function getTodayPrayers() {
     fri.push({name:"מעריב",time:p.mv,sub:""});
     return fri;
   }
+  var isRoshChodesh = (todayKey()===20260517);
+  if (isRoshChodesh) {
+    return [
+      {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"מנחה גדולה",time:"13:20",sub:""},
+      {name:"מנחה קטנה",time:p.mk,sub:""},
+      {name:"מעריב א'",time:p.m1,sub:""},
+      {name:"מעריב ב'",time:"22:00",sub:""}
+    ];
+  }
   var isErevRC = (todayKey()===20260514);
   if (isErevRC) {
     return [
