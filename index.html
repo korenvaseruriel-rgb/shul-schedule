@@ -143,6 +143,12 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div id="ykkBanner" style="display:none;background:#f5d98a;color:#3d2200;padding:.75rem 1.2rem;text-align:center;font-family:'Frank Ruhl Libre',serif;font-size:1rem;font-weight:700;border-bottom:2px solid #c9a96e;">
   ⏰ תזכורת: תפילת יום כיפור קטן היום בשעה 13:15
 </div>
+<div id="shavuotBanner" style="display:none;background:linear-gradient(135deg,#1a0f00,#3d2200);color:#f5d98a;padding:1.1rem 1.5rem;text-align:center;direction:rtl;border-bottom:2px solid #c9a96e;">
+  <div style="font-size:.75rem;opacity:.7;letter-spacing:2px;margin-bottom:4px;">✦ ✦ ✦</div>
+  <div style="font-size:1.3rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">📜 ערב חג שבועות תשפ"ו</div>
+  <div style="width:60px;height:1px;background:#c9a96e;margin:.5rem auto;"></div>
+  <div style="font-size:.88rem;color:#e8c878;">עירוב תבשילין</div>
+</div>
 
 <div class="next-banner">
   <div><span class="next-label">התפילה הקרובה</span><span class="next-name" id="nName">—</span><span class="next-cd" id="nCD"></span></div>
@@ -152,7 +158,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div class="main">
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
-    <button class="tab-btn" onclick="sw('shabbat')">שבת קרובה</button>
+    <button class="tab-btn" onclick="sw('shabbat')">חג השבועות ושבת</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
@@ -204,7 +210,63 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   </div>
 
   <div class="tab-content" id="tab-shabbat">
-    <div class="sh-block" id="shabbatBlock"></div>
+    <div style="background:#f5f0e8;border:1.5px solid #c9a96e;border-radius:12px;padding:.8rem 1rem;margin-bottom:1rem;text-align:center;direction:rtl;">
+      <div style="font-size:.78rem;color:#5c3500;font-weight:600;">⚠️ תזכורת — יש לערב עירוב תבשילין לפני החג</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+      <div class="fb" style="margin:0;">
+        <div class="fb-hdr">ערב חג השבועות — חמישי 21/5</div>
+        <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
+        <div class="fr"><span class="fl">הדלקת נרות יו"ט</span><span class="ft" style="color:#c9a96e;font-weight:700;">18:56</span></div>
+        <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">19:21</span></div>
+        <div class="fr"><span class="fl">שקיעה</span><span class="ft">19:36</span></div>
+      </div>
+      <div class="fb" style="margin:0;">
+        <div class="fb-hdr">חג השבועות — שישי 22/5</div>
+        <div class="fr"><span class="fl">עטיפת טלית</span><span class="ft">4:42</span></div>
+        <div class="fr"><span class="fl">שחרית ותיקין</span><span class="ft" style="font-weight:700;">5:05</span></div>
+        <div class="fr"><span class="fl">הא-ל</span><span class="ft">5:30</span></div>
+        <div class="fr"><span class="fl">יזכור (משוער)</span><span class="ft">6:35</span></div>
+        <div class="fr"><span class="fl">שחרית ב'</span><span class="ft" style="font-weight:700;">8:30</span></div>
+        <div class="fr"><span class="fl">הא-ל</span><span class="ft">8:55</span></div>
+        <div class="fr"><span class="fl">יזכור (משוער)</span><span class="ft">10:10</span></div>
+        <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
+      </div>
+    </div>
+
+    <div class="fb">
+      <div class="fb-hdr">ליל חג השבועות</div>
+      <div class="fr"><span class="fl">דרשה — הרב צבי הכהן דוידוביץ שליט"א</span><span class="ft">19:35</span></div>
+      <div class="fr"><span class="fl">מעריב</span><span class="ft">20:00</span></div>
+      <div class="fr"><span class="fl">סדר לימוד מיוחד לילדים — אבות ובנים</span><span class="ft">23:15–24:00</span></div>
+      <div class="fr"><span class="fl">סדר לימוד ליל שבועות — הרב קירשנבוים שליט"א</span><span class="ft">24:00</span></div>
+      <div class="fr"><span class="fl">דף יומי — ר' זילבר</span><span class="ft">00:45</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+      <div class="fb" style="margin:0;">
+        <div class="fb-hdr">שבת פרשת נשא — אסרו חג</div>
+        <div class="fr"><span class="fl">שבת מוקדם</span><span class="ft">17:52</span></div>
+        <div class="fr"><span class="fl">הדלקת נרות שבת</span><span class="ft" style="color:#c9a96e;font-weight:700;">18:57</span></div>
+        <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">19:22</span></div>
+        <div class="fr"><span class="fl">שקיעה</span><span class="ft">19:37</span></div>
+        <div class="fr"><span class="fl">מעריב</span><span class="ft">19:57</span></div>
+        <div class="fr"><span class="fl">שחרית</span><span class="ft">8:30</span></div>
+        <div class="fr"><span class="fl">שוכן עד</span><span class="ft">8:55</span></div>
+        <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
+      </div>
+      <div class="fb" style="margin:0;">
+        <div class="fb-hdr">שבת — אחה"צ ומוצ"ש</div>
+        <div class="fr"><span class="fl">דף יומי — ר' זילבר</span><span class="ft">17:20</span></div>
+        <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">18:05</span></div>
+        <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">18:40</span></div>
+        <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">18:57</span></div>
+        <div class="fr"><span class="fl">מעריב / צאת השבת</span><span class="ft">20:15</span></div>
+        <div class="fr"><span class="fl">מעריב ב'</span><span class="ft">20:35</span></div>
+        <div class="fr"><span class="fl">דף יומי — ר' באום</span><span class="ft">21:30</span></div>
+      </div>
+    </div>
   </div>
 
   <div class="tab-content" id="tab-fixed">
@@ -265,9 +327,9 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 
   <div class="tab-content" id="tab-mazel">
     <div class="sec-title">הודעות מזל טוב</div>
-    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת בוקמן לרגל אירוסי הבן מתי! יזכו לבנות בית נאמן בישראל 🎉</div></div>
-    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת הרב בוימל לרגל אירוסי נכדתם! יזכו לבנות בית נאמן בישראל 🎉</div></div>
-    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת בלוי לרגל אירוסי בנם ראובן! יזכו לבנות בית נאמן בישראל 🎉</div></div>
+    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת חייט לרגל נישואי בתם הכלה אביגיל לאה שתחי'! יזכו לבנות בית נאמן בישראל 🎉</div></div>
+    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת סטפנסקי לרגל הולדת נכד! יגדל לתורה לחופה ולמעשים טובים 🎉</div></div>
+    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת חיים יהושע מיכל ודינה מקס לרגל נישואי בתם הכלה שתחי'! יזכו לבנות בית נאמן בישראל 🎉</div></div>
   </div>
 
   <div class="tab-content" id="tab-donate">
@@ -442,6 +504,18 @@ function getTodayPrayers() {
     fri.push({name:"מנחה וקבלת שבת",time:p.ks,sub:""});
     fri.push({name:"מעריב",time:p.mv,sub:""});
     return fri;
+  }
+  var isErevShavuot = (todayKey()===20260521);
+  if (isErevShavuot) {
+    return [
+      {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"מנחה גדולה",time:"13:30",sub:"ערב חג"},
+      {name:"הדלקת נרות",time:"18:56",sub:"יו\"ט"},
+      {name:"מנחה קטנה",time:"19:21",sub:""},
+      {name:"מעריב",time:"20:00",sub:"ליל חג"}
+    ];
   }
   var isRoshChodesh = (todayKey()===20260517);
   if (isRoshChodesh) {
@@ -638,7 +712,10 @@ function updateClock() {
     if(omerSef){omerSef.textContent="";}
   }
   // Yom kippur katan banner - erev rosh chodesh sivan = May 19 2026, until 14:00
-  var ykkBanner=document.getElementById('ykkBanner');
+  var shavuotBanner=document.getElementById('shavuotBanner');
+  if(shavuotBanner){
+    shavuotBanner.style.display=(tkNow===20260521)?'block':'none';
+  }
   if(ykkBanner){
     var tkNow = todayKey();
     var nmNow = nowMins();
@@ -662,7 +739,7 @@ function updateClock() {
 }
 
 var ANNS = [
-  "מתפללי בית הכנסת זכרון משה היקרים! כמידי שבתות מברכין, בעזרת השם בשבת הקרובה, שבת קודש פרשת במדבר — מברכין סיון, יערך בבית הכנסת קידוש לאחר התפילה. נשמח להשתתפות כל חברי ומתפללי בית הכנסת. ישא דברים חברינו ר׳ צבי דוד גרין. כולם מוזמנים!",
+  "משפחת אליהו סלמון מזמינה את הציבור לקידוש בש\"ק פרשת נשא לאחר התפילה, לע\"נ האבא הרב מרדכי ב\"ר שלמה הלוי ז\"ל.",
   "מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב."
 ];
 
