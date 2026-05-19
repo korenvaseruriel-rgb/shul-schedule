@@ -215,7 +215,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
     </div>
 
     <div class="fb">
-      <div class="fb-hdr">ערב חג השבועות — כ"ג באייר</div>
+      <div class="fb-hdr">ערב חג השבועות</div>
       <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
       <div class="fr"><span class="fl">הדלקת נרות יו"ט</span><span class="ft" style="color:#c9a96e;font-weight:700;">18:56</span></div>
       <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">19:21</span></div>
@@ -232,7 +232,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
     </div>
 
     <div class="fb">
-      <div class="fb-hdr">חג השבועות — כ"ד באייר</div>
+      <div class="fb-hdr">חג השבועות</div>
       <div class="fr"><span class="fl">עטיפת טלית</span><span class="ft">4:42</span></div>
       <div class="fr"><span class="fl">שחרית ותיקין</span><span class="ft" style="font-weight:700;">5:05</span></div>
       <div class="fr"><span class="fl">הא-ל</span><span class="ft">5:30</span></div>
@@ -321,7 +321,10 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 
   <div class="tab-content" id="tab-ann">
     <div class="sec-title">הודעות כלליות</div>
-    <div id="annList"></div>
+    <div id="annList">
+      <div class="ann-item"><div class="ann-txt">משפחת אליהו סלמון מזמינה את הציבור לקידוש בש"ק פרשת נשא לאחר התפילה, לע"נ האבא הרב מרדכי ב"ר שלמה הלוי ז"ל.</div></div>
+      <div class="ann-item"><div class="ann-txt">מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב.</div></div>
+    </div>
   </div>
 
   <div class="tab-content" id="tab-mazel">
@@ -744,7 +747,8 @@ var ANNS = [
 
 function renderAnns() {
   var el = document.getElementById('annList');
-  if (!ANNS.length) { el.innerHTML = '<div class="ann-empty">אין הודעות כרגע</div>'; return; }
+  if (!el) { return; }
+  if (!ANNS || !ANNS.length) { el.innerHTML = '<div class="ann-empty">אין הודעות כרגע</div>'; return; }
   var html = '';
   for (var i = 0; i < ANNS.length; i++) {
     html += '<div class="ann-item"><div class="ann-txt">' + ANNS[i] + '</div></div>';
